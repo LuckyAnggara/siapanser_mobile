@@ -62,9 +62,9 @@ Color kColorAlertBlue = '#4286E1'.toColor();
 Color kColorAlertPurple = '#A066D7'.toColor();
 
 class ApiConstants {
-  // static String baseUrl = 'https://siapbaper.bbmakmur.com/api';
+  static String baseUrl = 'https://siapbaper.bbmakmur.com/api';
   // static String baseUrl = 'http://127.0.0.1:8000/api';
-  static String baseUrl = 'http://192.168.1.24:8000/api';
+  // static String baseUrl = 'http://192.168.1.24:8000/api';
 
 // Bearer 4|xYmmGmblOC1j0OXcTRnE98hP5vrpYw2JtERvi3tx
 }
