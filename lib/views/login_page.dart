@@ -33,11 +33,11 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "SIPANSER",
+                            "SIAP BAPER",
                             style: kWhiteFontStyle.copyWith(fontSize: 48),
                           ),
                           Text(
-                            "Sistem Aplikasi Persediaan",
+                            "Sistem Aplikasi Barang Persediaan",
                             style: kWhiteFontStyle2.copyWith(fontSize: 20),
                           )
                         ],
@@ -62,11 +62,13 @@ class LoginPage extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: kPadding),
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10, horizontal: kPadding),
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: kPadding),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: kPadding),
                         child: const Icon(
                           Icons.person_outline,
                           color: Colors.grey,
@@ -107,11 +109,13 @@ class LoginPage extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: kPadding),
+                  margin: EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: kPadding),
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: kPadding),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: kPadding),
                         child: const Icon(
                           Icons.lock_open,
                           color: Colors.grey,
@@ -160,14 +164,16 @@ class LoginPage extends StatelessWidget {
                     borderRadius: 10,
                     child: Text(
                       'Sign in',
-                      style: kBlackFontStyle.copyWith(fontSize: 14.0, fontWeight: FontWeight.bold),
+                      style: kBlackFontStyle.copyWith(
+                          fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
                     controller: loginController.btnController,
                     onPressed: () async {
                       bool success = await loginController.authLogin();
                       if (success) {
                         loginController.btnController.success();
-                        await Future.delayed(const Duration(milliseconds: 400), () {
+                        await Future.delayed(const Duration(milliseconds: 400),
+                            () {
                           Get.offNamed(
                             '/',
                           );
@@ -183,7 +189,8 @@ class LoginPage extends StatelessWidget {
                           icon: const Icon(Icons.alarm),
                           shouldIconPulse: true,
                         );
-                        await Future.delayed(const Duration(milliseconds: 400), () {
+                        await Future.delayed(const Duration(milliseconds: 400),
+                            () {
                           loginController.btnController.reset();
                         });
                       }

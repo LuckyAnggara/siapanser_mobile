@@ -31,11 +31,14 @@ class MyApp extends StatelessWidget {
         Get.put(LocalStorageController(), tag: 'localStorageController');
     final RequestController requestController =
         Get.put(RequestController(), tag: 'requestController');
-    final LoginController loginController = Get.put(LoginController(), tag: 'loginController');
+    final LoginController loginController =
+        Get.put(LoginController(), tag: 'loginController');
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => HomePage(), transition: Transition.fadeIn),
+        GetPage(
+            name: '/', page: () => HomePage(), transition: Transition.fadeIn),
         GetPage(
             name: '/login',
             page: () {
@@ -45,21 +48,38 @@ class MyApp extends StatelessWidget {
                 return LoginPage();
               }
             }),
-        GetPage(name: '/product', page: () => ProductPage(), transition: Transition.cupertino),
-        GetPage(name: '/profile', page: () => ProfilePage(), transition: Transition.cupertino),
+        GetPage(
+            name: '/product',
+            page: () => ProductPage(),
+            transition: Transition.cupertino),
+        GetPage(
+            name: '/profile',
+            page: () => ProfilePage(),
+            transition: Transition.cupertino),
         GetPage(
             name: '/change-password',
             page: () => ChangePasswordPageView(),
             transition: Transition.topLevel),
-        GetPage(name: '/permintaan', page: () => PermintaanPage(), transition: Transition.downToUp),
-        GetPage(name: '/history', page: () => HistoryPage(), transition: Transition.downToUp),
         GetPage(
-            name: '/detail-ticket', page: () => DetailPage(), transition: Transition.rightToLeft),
+            name: '/permintaan',
+            page: () => PermintaanPage(),
+            transition: Transition.downToUp),
+        GetPage(
+            name: '/history',
+            page: () => HistoryPage(),
+            transition: Transition.downToUp),
+        GetPage(
+            name: '/detail-ticket',
+            page: () => DetailPage(),
+            transition: Transition.rightToLeft),
         GetPage(
             name: '/tambah-permintaan',
             page: () => PermintaanPageView(),
             transition: Transition.cupertino),
-        GetPage(name: '/tambah-permintaan/notes', page: () => Notes(), transition: Transition.size),
+        GetPage(
+            name: '/tambah-permintaan/notes',
+            page: () => Notes(),
+            transition: Transition.size),
         GetPage(
             name: '/success-illustration',
             page: () => SuccessIllustration(),

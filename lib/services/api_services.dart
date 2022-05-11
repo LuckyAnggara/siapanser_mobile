@@ -12,12 +12,14 @@ import '../models/permintaan_model.dart';
 import '../models/product_model.dart';
 
 class HttpServices {
-  final LocalStorageController localStorageController = Get.find(tag: 'localStorageController');
+  final LocalStorageController localStorageController =
+      Get.find(tag: 'localStorageController');
   final Dio _dio = Dio();
 
   Future<ProductModel?> fetchProducts() async {
     try {
-      var response = await _dio.get('${ApiConstants.baseUrl}/product?limit=100');
+      var response =
+          await _dio.get('${ApiConstants.baseUrl}/product?limit=100');
       if (response.statusCode == 200) {
         return ProductModel.fromJson(response.data);
       } else {
@@ -28,9 +30,11 @@ class HttpServices {
     }
   }
 
-  Future<ProductModel?> searchProduct({required String str, int limit = 100}) async {
+  Future<ProductModel?> searchProduct(
+      {required String str, int limit = 100}) async {
     try {
-      var response = await _dio.get('${ApiConstants.baseUrl}/product?name=$str&limit=$limit');
+      var response = await _dio
+          .get('${ApiConstants.baseUrl}/product?name=$str&limit=$limit');
       if (response.statusCode == 200) {
         return ProductModel.fromJson(response.data);
       } else {
@@ -41,7 +45,8 @@ class HttpServices {
     }
   }
 
-  Future<bool> postPermintaan({required PermintaanModel permintaanModel}) async {
+  Future<bool> postPermintaan(
+      {required PermintaanModel permintaanModel}) async {
     var response = await _dio.post(
       '${ApiConstants.baseUrl}/request/store',
       data: json.encode(permintaanModel.toJson()),
@@ -59,7 +64,7 @@ class HttpServices {
     // return response;
   }
 
-  Future<UserModel?> auth(LoginModel data) async {
+  Future<dynamic> auth(LoginModel data) async {
     try {
       var response = await _dio.post(
         '${ApiConstants.baseUrl}/login',
@@ -74,6 +79,9 @@ class HttpServices {
         Token token = Token.fromJson(response.data);
         localStorageController.setToken(token);
         return getProfileData();
+      }
+      if (response.statusCode == 403) {
+        return 'deactive';
       }
     } catch (e) {
       log(e.toString());
@@ -123,7 +131,8 @@ class HttpServices {
 
   Future<RequestData?> fetchNoTicket({required String noTicket}) async {
     try {
-      var response = await _dio.get('${ApiConstants.baseUrl}/request/get?no_ticket=$noTicket');
+      var response = await _dio
+          .get('${ApiConstants.baseUrl}/request/get?no_ticket=$noTicket');
       if (response.statusCode == 200) {
         return RequestData.fromJson(response.data['data']);
       } else {
@@ -156,7 +165,8 @@ class HttpServices {
     return false;
   }
 
-  Future<bool> changePassword({required ChangePasswordModel changePasswordModel}) async {
+  Future<bool> changePassword(
+      {required ChangePasswordModel changePasswordModel}) async {
     try {
       var response = await _dio.post(
         '${ApiConstants.baseUrl}/change-password',

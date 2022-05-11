@@ -2,7 +2,7 @@
     package="com.example.siap_baper">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="siap_baper"
+        android:label="SIAP BAPER"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

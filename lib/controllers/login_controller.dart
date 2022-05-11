@@ -26,9 +26,11 @@ class LoginController extends GetxController {
     initialPage: 0,
   ).obs;
 
-  RoundedLoadingButtonController btnController = RoundedLoadingButtonController();
+  RoundedLoadingButtonController btnController =
+      RoundedLoadingButtonController();
 
-  RoundedLoadingButtonController btnChangePasswordController = RoundedLoadingButtonController();
+  RoundedLoadingButtonController btnChangePasswordController =
+      RoundedLoadingButtonController();
 
   @override
   void onInit() {
@@ -95,10 +97,12 @@ class LoginController extends GetxController {
 
   Future<bool> changePassword() async {
     ChangePasswordModel changePasswordModel = ChangePasswordModel(
-        passwordLama: passwordLamaController.text, passwordBaru: passwordBaruController.text);
+        passwordLama: passwordLamaController.text,
+        passwordBaru: passwordBaruController.text);
     try {
       isLoading(true);
-      var result = await _httpServices.changePassword(changePasswordModel: changePasswordModel);
+      var result = await _httpServices.changePassword(
+          changePasswordModel: changePasswordModel);
       return result;
     } finally {
       isLoading(false);
@@ -108,8 +112,8 @@ class LoginController extends GetxController {
   }
 
   void changePasswordNextPage() {
-    changePasswordPageController.value
-        .nextPage(duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+    changePasswordPageController.value.nextPage(
+        duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
   }
 
   void logout() {
