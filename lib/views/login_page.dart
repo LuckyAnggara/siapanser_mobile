@@ -23,25 +23,13 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Expanded(
-                  child: ClipPath(
-                    clipper: MyClipper(),
-                    child: Container(
-                      decoration: const BoxDecoration(),
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.only(top: 100.0, bottom: 100.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "SIAP BAPER",
-                            style: kWhiteFontStyle.copyWith(fontSize: 48),
-                          ),
-                          Text(
-                            "Sistem Aplikasi Barang Persediaan",
-                            style: kWhiteFontStyle2.copyWith(fontSize: 20),
-                          )
-                        ],
-                      ),
+                Container(
+                  height: Get.height * 0.5,
+                  padding: EdgeInsets.all(5),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/logo_login.png',
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -82,6 +70,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextField(
+                          enabled: !loginController.isLoading.value,
                           controller: loginController.nipController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -129,6 +118,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextField(
+                          enabled: !loginController.isLoading.value,
                           obscureText: !loginController.passwordVisible.value,
                           controller: loginController.passwordController,
                           decoration: InputDecoration(

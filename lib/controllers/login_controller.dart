@@ -8,7 +8,7 @@ import 'package:siap_baper/models/auth_model.dart';
 import '../services/api_services.dart';
 
 class LoginController extends GetxController {
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   RxBool login = false.obs;
   RxBool passwordVisible = false.obs;
   var isPasswordLamaFill = false.obs;

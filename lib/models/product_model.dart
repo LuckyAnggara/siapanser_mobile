@@ -68,8 +68,12 @@ class Product {
         quantity: json["quantity"],
         type: json['type'] == null ? null : Type.fromJson(json["type"]),
         unit: Unit.fromJson(json["unit"]),
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json['created_at'] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json['updated_at'] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
       );
 }
 
