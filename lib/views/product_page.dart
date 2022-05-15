@@ -13,6 +13,7 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: kPrimary,
@@ -73,6 +74,7 @@ class ProductPage extends StatelessWidget {
                                 onSubmitted: (val) {
                                   productController.searchProducts(val);
                                 },
+                                focusNode: productController.focus,
                                 controller: productController.searchProductController,
                                 decoration: InputDecoration(
                                   suffixIcon: IconButton(
@@ -96,14 +98,17 @@ class ProductPage extends StatelessWidget {
                         ),
                       ),
                       Obx(() {
-                        return Container(
-                          padding: EdgeInsets.only(left: kPadding + 14),
-                          width: double.infinity,
-                          child: Text(
-                            '${productController.productList.length} Data ditemukan',
-                            style: kWhiteFontStyle,
-                          ),
-                        );
+                        if (productController.visible.value) {
+                          return Container(
+                            padding: EdgeInsets.only(left: kPadding + 14),
+                            width: double.infinity,
+                            child: Text(
+                              '${productController.productList.length} Data ditemukan',
+                              style: kWhiteFontStyle,
+                            ),
+                          );
+                        }
+                        return SizedBox();
                       })
                     ],
                   ),

@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(5),
                       child: Text(
                         "Profile",
@@ -121,7 +121,6 @@ class ProfilePage extends StatelessWidget {
                     Get.toNamed('/change-password');
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: kPrimary,
                       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                       textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   child: Padding(
@@ -145,7 +144,7 @@ class ProfilePage extends StatelessWidget {
                   Get.offAllNamed('/');
                 },
                 style: TextButton.styleFrom(
-                    primary: kPrimary,
+                    foregroundColor: kPrimary,
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                     textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 child: Padding(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:siap_baper/constant.dart';
+import 'package:siap_baper/controllers/local_storage_controller.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -9,6 +10,7 @@ class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
   final LoginController loginController = Get.find(tag: 'loginController');
+  final LocalStorageController localStorageController = Get.find(tag: 'localStorageController');
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +52,11 @@ class LoginPage extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  margin:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: kPadding),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: kPadding),
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: kPadding),
+                        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: kPadding),
                         child: const Icon(
                           Icons.person_outline,
                           color: Colors.grey,
@@ -98,13 +98,11 @@ class LoginPage extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  margin: EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: kPadding),
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: kPadding),
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: kPadding),
+                        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: kPadding),
                         child: const Icon(
                           Icons.lock_open,
                           color: Colors.grey,
@@ -154,16 +152,15 @@ class LoginPage extends StatelessWidget {
                     borderRadius: 10,
                     child: Text(
                       'Sign in',
-                      style: kBlackFontStyle.copyWith(
-                          fontSize: 14.0, fontWeight: FontWeight.bold),
+                      style: kBlackFontStyle.copyWith(fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
                     controller: loginController.btnController,
                     onPressed: () async {
+                      localStorageController.destroyToken();
                       bool success = await loginController.authLogin();
                       if (success) {
                         loginController.btnController.success();
-                        await Future.delayed(const Duration(milliseconds: 400),
-                            () {
+                        await Future.delayed(const Duration(milliseconds: 400), () {
                           Get.offNamed(
                             '/',
                           );
@@ -179,8 +176,7 @@ class LoginPage extends StatelessWidget {
                           icon: const Icon(Icons.alarm),
                           shouldIconPulse: true,
                         );
-                        await Future.delayed(const Duration(milliseconds: 400),
-                            () {
+                        await Future.delayed(const Duration(milliseconds: 400), () {
                           loginController.btnController.reset();
                         });
                       }

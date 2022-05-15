@@ -13,6 +13,7 @@ class PermintaanPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: permintaanController.pageController.value,
         children: [
           SearchName(),

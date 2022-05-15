@@ -26,18 +26,30 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          if (localStorageController.isLogin) {
-            Get.toNamed('/permintaan');
-          } else {
+          if (loginController.profile.value.role == 'ADMIN') {
             Get.snackbar(
               'Opss',
-              'Login terlebih dahulu',
-              duration: Duration(milliseconds: 1500),
-              backgroundColor: Colors.red.withOpacity(0.7),
+              'Role Admin tidak bisa melakukan pengajuan persediaan',
+              duration: const Duration(milliseconds: 3000),
+              backgroundColor: Colors.red.withOpacity(1),
               snackPosition: SnackPosition.BOTTOM,
               icon: const Icon(Icons.clear),
               shouldIconPulse: true,
             );
+          } else {
+            if (localStorageController.isLogin) {
+              Get.toNamed('/permintaan');
+            } else {
+              Get.snackbar(
+                'Opss',
+                'Login terlebih dahulu',
+                duration: const Duration(milliseconds: 3000),
+                backgroundColor: Colors.red.withOpacity(0.7),
+                snackPosition: SnackPosition.BOTTOM,
+                icon: const Icon(Icons.clear),
+                shouldIconPulse: true,
+              );
+            }
           }
         },
         // backgroundColor: kSecondary,

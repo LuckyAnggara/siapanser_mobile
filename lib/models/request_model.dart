@@ -46,34 +46,36 @@ class RequestData {
   });
 
   int? id;
-  int? userId;
-  dynamic? userAdmin;
+  dynamic userId;
+  dynamic userAdmin;
   String? noTicket;
   String? notes;
   String? status;
   DateTime? createdAt;
   DateTime? updatedAt;
-  UserModel? user;
+  UserModel2? user;
   List<RequestDetail>? detail;
   List<TimeLog>? timeLog;
 
-  factory RequestData.fromJson(Map<String, dynamic> json) => RequestData(
-        id: json["id"],
-        userId: json["user_id"],
-        userAdmin: json["user_admin"],
-        noTicket: json["no_ticket"],
-        notes: json["notes"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        user: UserModel.fromJson(json["user"]),
-        detail: json['detail'] == null
-            ? null
-            : List<RequestDetail>.from(json["detail"].map((x) => RequestDetail.fromJson(x))),
-        timeLog: json['time_log'] == null
-            ? null
-            : List<TimeLog>.from(json["time_log"].map((x) => TimeLog.fromJson(x))),
-      );
+  factory RequestData.fromJson(Map<String, dynamic> json) {
+    return RequestData(
+      id: json["id"],
+      userId: json["user_id"],
+      userAdmin: json["user_admin"],
+      noTicket: json["no_ticket"],
+      notes: json["notes"],
+      status: json["status"],
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
+      user: UserModel2.fromJson(json["user"]),
+      detail: json['detail'] == null
+          ? null
+          : List<RequestDetail>.from(json["detail"].map((x) => RequestDetail.fromJson(x))),
+      timeLog: json['time_log'] == null
+          ? null
+          : List<TimeLog>.from(json["time_log"].map((x) => TimeLog.fromJson(x))),
+    );
+  }
 }
 
 class RequestDetail {
@@ -99,17 +101,19 @@ class RequestDetail {
   DateTime? updatedAt;
   Product? product;
 
-  factory RequestDetail.fromJson(Map<String, dynamic> json) => RequestDetail(
-        id: json["id"],
-        requestId: json["request_id"],
-        productId: json["product_id"],
-        quantity: json["quantity"],
-        accQuantity: json["acc_quantity"],
-        status: json["status"] == null ? '' : json['status'],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        product: json['product'] == null ? null : Product.fromJson(json["product"]),
-      );
+  factory RequestDetail.fromJson(Map<String, dynamic> json) {
+    return RequestDetail(
+      id: json["id"],
+      requestId: json["request_id"],
+      productId: json["product_id"],
+      quantity: json["quantity"],
+      accQuantity: json["acc_quantity"],
+      status: json["status"] == null ? '' : json['status'],
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
+      product: json['product'] == null ? null : Product.fromJson(json["product"]),
+    );
+  }
 }
 
 class TimeLog {
@@ -129,15 +133,17 @@ class TimeLog {
   String? keterangan;
   DateTime? createdAt;
   DateTime? updatedAt;
-  UserModel? user;
+  UserModel2? user;
 
-  factory TimeLog.fromJson(Map<String, dynamic> json) => TimeLog(
-        id: json["id"] == null ? null : json["id"],
-        requestId: json["request_id"] == null ? null : json["request_id"],
-        userId: json["user_id"] == null ? null : json["user_id"],
-        keterangan: json["keterangan"] == null ? null : json["keterangan"],
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        user: json["user"] == null ? null : UserModel.fromJson(json["user"]),
-      );
+  factory TimeLog.fromJson(Map<String, dynamic> json) {
+    return TimeLog(
+      id: json["id"] == null ? null : json["id"],
+      requestId: json["request_id"] == null ? null : json["request_id"],
+      userId: json["user_id"] == null ? null : json["user_id"],
+      keterangan: json["keterangan"] == null ? null : json["keterangan"],
+      createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+      updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+      user: json["user"] == null ? null : UserModel2.fromJson(json["user"]),
+    );
+  }
 }

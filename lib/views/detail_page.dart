@@ -22,7 +22,7 @@ class DetailPage extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: kPrimary,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -99,7 +99,7 @@ class DetailPage extends StatelessWidget {
           }
         },
         backgroundColor: Colors.red,
-        child: Icon(Icons.delete),
+        child: const Icon(Icons.delete),
       ),
       backgroundColor: kPrimary,
       body: SafeArea(
@@ -116,7 +116,7 @@ class DetailPage extends StatelessWidget {
               height: Get.height * 0.9 - 24,
               child: Obx(() {
                 if (requestController.isLoadingDetail.value) {
-                  return Center(
+                  return const Center(
                     child: SpinKitWave(
                       color: Colors.black,
                     ),
@@ -124,7 +124,7 @@ class DetailPage extends StatelessWidget {
                 } else {
                   int no = 0;
                   return ListView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       Container(
                         padding: EdgeInsets.only(
@@ -136,7 +136,7 @@ class DetailPage extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.only(bottom: 15),
+                                    margin: const EdgeInsets.only(bottom: 15),
                                     child: Row(
                                       children: [
                                         Text(
@@ -144,7 +144,7 @@ class DetailPage extends StatelessWidget {
                                           style: kBlackFontStyle.copyWith(
                                               fontSize: 14, fontWeight: FontWeight.bold),
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         Text(
                                           '${requestController.fetchRequestData.value.noTicket}',
                                         )
@@ -152,7 +152,7 @@ class DetailPage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(bottom: 15),
+                                    margin: const EdgeInsets.only(bottom: 15),
                                     child: Row(
                                       children: [
                                         Text(
@@ -169,7 +169,7 @@ class DetailPage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(bottom: 15),
+                                    margin: const EdgeInsets.only(bottom: 15),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -178,12 +178,11 @@ class DetailPage extends StatelessWidget {
                                           style: kBlackFontStyle.copyWith(
                                               fontSize: 14, fontWeight: FontWeight.bold),
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         SizedBox(
                                           width: 200,
                                           child: Text(
                                             '${requestController.fetchRequestData.value.notes}',
-                                            overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.end,
                                           ),
                                         )
@@ -191,7 +190,7 @@ class DetailPage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(bottom: 15),
+                                    margin: const EdgeInsets.only(bottom: 15),
                                     child: Row(
                                       children: [
                                         Text(
@@ -199,7 +198,7 @@ class DetailPage extends StatelessWidget {
                                           style: kBlackFontStyle.copyWith(
                                               fontSize: 14, fontWeight: FontWeight.bold),
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         Text(
                                           '${requestController.fetchRequestData.value.status}',
                                           style: kBlackFontStyle2.copyWith(

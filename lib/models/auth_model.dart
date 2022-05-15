@@ -27,7 +27,7 @@ class UserModel {
     this.id,
     this.name,
     this.role,
-    this.divisionId,
+    this.division,
     this.status,
     this.nip,
   });
@@ -35,7 +35,7 @@ class UserModel {
   int? id;
   String? name;
   String? role;
-  int? divisionId;
+  Division? division;
   String? status;
   String? nip;
 
@@ -43,9 +43,21 @@ class UserModel {
         id: json["id"],
         name: json["name"],
         role: json["role"],
-        divisionId: json["division_id"],
+        division: Division.fromJson(json["division"]),
         status: json["status"],
         nip: json["nip"],
+      );
+}
+
+class Division {
+  final int id;
+  final String name;
+
+  Division({required this.id, required this.name});
+
+  factory Division.fromJson(Map<String, dynamic> json) => Division(
+        id: json["id"],
+        name: json["name"],
       );
 }
 
@@ -59,4 +71,31 @@ class ChangePasswordModel {
         "password_lama": passwordLama,
         "password_baru": passwordBaru,
       };
+}
+
+class UserModel2 {
+  UserModel2({
+    this.id,
+    this.name,
+    this.role,
+    this.divisionId,
+    this.status,
+    this.nip,
+  });
+
+  int? id;
+  String? name;
+  String? role;
+  int? divisionId;
+  String? status;
+  String? nip;
+
+  factory UserModel2.fromJson(Map<String, dynamic> json) => UserModel2(
+        id: json["id"],
+        name: json["name"],
+        role: json["role"],
+        divisionId: json["division_id"],
+        status: json["status"],
+        nip: json["nip"],
+      );
 }

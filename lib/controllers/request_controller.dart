@@ -16,11 +16,6 @@ class RequestController extends GetxController {
   final TextEditingController searchHistoryController = TextEditingController();
 
   @override
-  void onInit() {
-    // fetchHistoryRequest();
-    super.onInit();
-  }
-
   void dispose() {
     searchHistoryController.dispose();
     super.dispose();

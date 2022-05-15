@@ -26,11 +26,9 @@ class LoginController extends GetxController {
     initialPage: 0,
   ).obs;
 
-  RoundedLoadingButtonController btnController =
-      RoundedLoadingButtonController();
+  RoundedLoadingButtonController btnController = RoundedLoadingButtonController();
 
-  RoundedLoadingButtonController btnChangePasswordController =
-      RoundedLoadingButtonController();
+  RoundedLoadingButtonController btnChangePasswordController = RoundedLoadingButtonController();
 
   @override
   void onInit() {
@@ -56,8 +54,6 @@ class LoginController extends GetxController {
     // TODO: implement onInit
     super.onInit();
   }
-
-  void callUser() {}
 
   @override
   void dispose() {
@@ -97,12 +93,10 @@ class LoginController extends GetxController {
 
   Future<bool> changePassword() async {
     ChangePasswordModel changePasswordModel = ChangePasswordModel(
-        passwordLama: passwordLamaController.text,
-        passwordBaru: passwordBaruController.text);
+        passwordLama: passwordLamaController.text, passwordBaru: passwordBaruController.text);
     try {
       isLoading(true);
-      var result = await _httpServices.changePassword(
-          changePasswordModel: changePasswordModel);
+      var result = await _httpServices.changePassword(changePasswordModel: changePasswordModel);
       return result;
     } finally {
       isLoading(false);
@@ -112,14 +106,26 @@ class LoginController extends GetxController {
   }
 
   void changePasswordNextPage() {
-    changePasswordPageController.value.nextPage(
-        duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+    changePasswordPageController.value
+        .nextPage(duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
   }
 
-  void logout() {
-    localStorageController.destroyToken();
-    localStorageController.setLogin(false);
-    requestController.updateList();
-    profile.value = UserModel();
+  void logout() async {
+    try {
+      isLoading(true);
+      bool result = await _httpServices.logout();
+      if (result) {
+        localStorageController.destroyToken();
+        localStorageController.setLogin(false);
+        requestController.updateList();
+        profile.value = UserModel();
+      }
+    } finally {
+      isLoading(false);
+      localStorageController.destroyToken();
+      localStorageController.setLogin(false);
+      requestController.updateList();
+      profile.value = UserModel();
+    }
   }
 }

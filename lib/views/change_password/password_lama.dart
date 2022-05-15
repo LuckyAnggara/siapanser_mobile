@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:siap_baper/controllers/login_controller.dart';
 
@@ -60,18 +59,18 @@ class PasswordLama extends StatelessWidget {
                 Obx(() {
                   if (loginController.isPasswordLamaFill.value) {
                     return Container(
-                      constraints: BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      margin: EdgeInsets.all(10),
+                      constraints: const BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                      margin: const EdgeInsets.all(10),
                       child: ElevatedButton(
                         onPressed: () {
                           loginController.changePasswordNextPage();
                         },
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                             textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                         child: Padding(
-                          padding: EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(0),
                           child: Container(
                             alignment: Alignment.center,
                             child: Row(
@@ -84,7 +83,7 @@ class PasswordLama extends StatelessWidget {
                                         fontSize: 15, fontWeight: FontWeight.w500),
                                   ),
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.arrow_forward,
                                   color: Colors.black,
                                 )
@@ -95,7 +94,7 @@ class PasswordLama extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return SizedBox();
+                    return const SizedBox();
                   }
                 }),
               ],

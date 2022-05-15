@@ -66,8 +66,8 @@ class Notes extends StatelessWidget {
               ),
             ),
             Container(
-              constraints: BoxConstraints(maxWidth: 300, maxHeight: 50.0),
-              margin: EdgeInsets.all(10),
+              constraints: const BoxConstraints(maxWidth: 300, maxHeight: 50.0),
+              margin: const EdgeInsets.all(10),
               child: RoundedLoadingButton(
                 successColor: Colors.white,
                 borderRadius: 10,

@@ -4,14 +4,15 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:siap_baper/controllers/request_controller.dart';
 import 'package:siap_baper/models/permintaan_model.dart';
 import 'package:siap_baper/models/product_model.dart';
+import 'package:supercharged/supercharged.dart';
 
 import '../services/api_services.dart';
 import 'login_controller.dart';
 
 class PermintaanController extends GetxController {
   var isLoading = false.obs;
-
   var isQuantityFill = false.obs;
+  var isQuantityRed = false.obs;
   RxList productSearchPermintaanList = [].obs;
   RxList<PermintaanProduct> detailPermintaan = <PermintaanProduct>[].obs;
   Rx<PermintaanModel> permintaanModal = PermintaanModel(userId: null, detail: [], notes: '').obs;
@@ -33,11 +34,20 @@ class PermintaanController extends GetxController {
   void onInit() {
     super.onInit();
     quantityProductController.addListener(() {
+      int? saldo = quantityProductController.text.toInt();
       if (quantityProductController.text.isNotEmpty) {
-        isQuantityFill.value = true;
+        if (saldo! <= product.value.quantity!) {
+          isQuantityFill.value = true;
+          isQuantityRed(false);
+        } else {
+          isQuantityFill.value = false;
+          isQuantityRed(true);
+        }
       } else {
         isQuantityFill.value = false;
+        isQuantityRed(false);
       }
+      update();
     });
   }
 
@@ -107,7 +117,11 @@ class PermintaanController extends GetxController {
       isLoading(false);
       requestController.fetchHistoryRequest();
     }
-    return false;
+  }
+
+  void cekSaldo(int? saldo) {
+    if (product.value.quantity! > saldo!) {
+    } else {}
   }
 
   void searchProductPermintaan(String str) async {
@@ -117,7 +131,7 @@ class PermintaanController extends GetxController {
       if (products != null) {
         productSearchPermintaanList.value = products.data!.data!;
       }
-      if (str == null || str == '') {
+      if (str == '') {
         productSearchPermintaanList.value = [];
       }
     } finally {
